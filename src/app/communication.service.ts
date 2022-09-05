@@ -1,25 +1,36 @@
-import {Injectable} from "@angular/core";
+import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../environments/environment.prod";
 import {Observable} from "rxjs";
-import {Fault} from "./fault";
-import {environment} from "../environments/environment";
 
+export interface IDataDto {
+  name: string,
+  type: string,
+  values: Array<number>,
+  clicked: boolean,
+  rms: Array<number>
+}
+export interface IFaultDTO {
+  valueName: string,
+  time: number,
+  timeUnitOfMeasurement: string,
+  fallbackValue: number,
+  valueUnitOfMeasurement: string
+}
+
+const ENDPOINT_API = environment.ENDPOINT_API;
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
-export class FaultService {
-  private apiServerUrl = environment.apiBaseUrl;
+export class CommunicationService {
 
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient) { }
+
+
+  public getScopes(path: string, fileName: string): Observable<IDataDto[]> {
+    return this.httpClient.get<IDataDto[]>(`${ENDPOINT_API}/readAndSave`, {params: {path: path, fileName: fileName}} )
   }
-
-  public getFault(): Observable<Fault[]> {
-    return this.http.get<Fault[]>(`${this.apiServerUrl}/comtrade/getFault`);
+  public getTable(): Observable<IFaultDTO[]> {
+    return this.httpClient.get<IFaultDTO[]>(`${ENDPOINT_API}/getFault`)
   }
-
-  // public readAndSave(path: string, fileName: string){
-  //
-  //   return this.http.post(`${this.apiServerUrl}/comtrade/getFault`, path)
-  // }
-
 }

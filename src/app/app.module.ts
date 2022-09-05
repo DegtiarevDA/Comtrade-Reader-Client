@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import {FaultService} from "./fault.service";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInput, MatInputModule} from "@angular/material/input";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldControl, MatFormFieldModule} from "@angular/material/form-field";
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {NgxEchartsModule} from "ngx-echarts";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -12,9 +16,18 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
-    HttpClientModule, FormsModule
+    BrowserAnimationsModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    HttpClientModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
+    MatTableModule
   ],
-  providers: [FaultService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
