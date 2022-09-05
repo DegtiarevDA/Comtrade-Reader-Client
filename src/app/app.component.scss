@@ -1,0 +1,38 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+button {
+  border: none;
+  background: red;
+  color: white;
+}
+main{
+  height: 95vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+}
+section{
+  width: 20vw;
+  overflow-y: scroll;
+}
+.custom-chart-1 {
+  height: 95vh;
+  width: 70vw;
+}
+.custom-table {
+  width: 30vw;
+}
+.is-clicked {
+  color: white;
+  background: #103C8B;
+}
+.mat-table {
+  width: 100%;
+}
